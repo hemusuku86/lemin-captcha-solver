@@ -8,7 +8,7 @@ import vsmutok
 from PIL import Image
 import io
 
-def solve(cap_id):
+def solve(cap_id, url="https://dashboard.leminnow.com"):
     s = requests.Session()
     ua = ua_generator.generate(browser="chrome",platform="ios")
     s.headers = {
@@ -21,7 +21,7 @@ def solve(cap_id):
     utc_offset = -540 # new Date()["getTimezoneOffset"], change for your/proxy's timezone
     screen_width = random.randint(360,399)
     screen_height = int(screen_width/9)*19
-    img_url = f"https://api.leminnow.com/captcha/v1/cropped/{cap_id}/image/{cap_uuid}?screen_width={screen_width}&screen_height={screen_height}&utc_offset={utc_offset}&v=3&domain=https://dashboard.leminnow.com&enc=SHA256"
+    img_url = f"https://api.leminnow.com/captcha/v1/cropped/{cap_id}/image/{cap_uuid}?screen_width={screen_width}&screen_height={screen_height}&utc_offset={utc_offset}&v=3&domain={url}&enc=SHA256"
     lsign = hashlib.md5((img_url+md5_uuid).encode()).hexdigest()
     img_url += f"&lsign={lsign}"
     img = s.get(img_url)
