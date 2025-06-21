@@ -1,3 +1,5 @@
+# skidded from https://github.com/vsmutok/Puzzle-Captcha-Solver
+
 import cv2
 
 
